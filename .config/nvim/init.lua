@@ -8,25 +8,29 @@ vim.g.loaded_netrwPlugin = 1
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
+require("mason").setup()
+
+-- Automatically install LSP servers
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "ts_ls",
+        "tflint",
+        "terraformls",
+        "eslint",
+        "pyright",
+    },
+    automatic_installation = true,
+})
+
+
 -- LSP Setup for tsserver (TypeScript/JavaScript)
 local lspconfig = require'lspconfig'
-lspconfig.ts_ls.setup{
-  cmd = { "node", "./node_modules/.bin/typescript-language-server", "--stdio" },
-  capabilities = capabilities,
-  root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git")
-}
 
+lspconfig.ts_ls.setup{}
+lspconfig.pyright.setup{}
 lspconfig.tflint.setup{}
 lspconfig.terraformls.setup{}
-lspconfig.eslint.setup({
-  cmd = { "node", "./node_modules/.bin/vscode-eslint-language-server", "--stdio" }, 
-on_attach = function(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
-})
+lspconfig.eslint.setup{}
 
 require("conform").setup({
       formatters = {
@@ -52,7 +56,6 @@ require("conform").setup({
     css = { "prettier" },
   },
     format_on_save = {
-    -- These options will be passed to conform.format()
     timeout_ms = 500,
     lsp_format = "fallback",
   },
@@ -78,6 +81,7 @@ cmp.setup({
   sources = {
     { name = 'nvim_lsp' },
     { name = 'buffer' },
+    { name = 'path' },
   }
 })
 

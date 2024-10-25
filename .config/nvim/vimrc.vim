@@ -17,9 +17,15 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'stevearc/conform.nvim'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'github/copilot.vim'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 call plug#end()
 
 set termguicolors     " enable true colors support
