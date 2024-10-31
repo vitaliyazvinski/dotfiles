@@ -26,6 +26,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'github/copilot.vim'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'mustache/vim-mustache-handlebars'
 call plug#end()
 
 set termguicolors     " enable true colors support
@@ -46,6 +47,12 @@ nnoremap <C-k> :cnext<CR>
 nnoremap <C-b> :NvimTreeToggle<CR>
 nnoremap <leader>two :split<CR><C-w>j:term<CR><C-w>10_
 nnoremap <leader>twc <C-w>l<C-w>j<C-w>j:q<CR>
+vnoremap <leader>y "+y
+nnoremap <leader>y "+y
+
+"LSP shortcuts
+"Go to references (C-] works by default to jump to definition)
+nnoremap <C-[> :lua vim.lsp.buf.references()<CR>
 
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
