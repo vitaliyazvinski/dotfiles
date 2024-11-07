@@ -6,6 +6,7 @@ set shiftwidth=2
 set expandtab
 set smartindent
 set cursorline
+set nofixendofline
 
 call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -53,6 +54,8 @@ nnoremap <leader>y "+y
 "LSP shortcuts
 "Go to references (C-] works by default to jump to definition)
 nnoremap <C-[> :lua vim.lsp.buf.references()<CR>
+nnoremap <C-a> :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>d :lua vim.diagnostic.open_float(0, { scope = 'line' })<CR>
 
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv

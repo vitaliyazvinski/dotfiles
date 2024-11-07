@@ -54,6 +54,8 @@ require("conform").setup({
     json = { "prettier" },
     html = { "prettier" },
     css = { "prettier" },
+    python = { "black" },
+    tf = { "prettier" },
   },
     format_on_save = {
     timeout_ms = 500,
