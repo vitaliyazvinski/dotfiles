@@ -48,6 +48,15 @@ nnoremap <C-k> :cnext<CR>
 nnoremap <C-b> :NvimTreeToggle<CR>
 nnoremap <leader>two :split<CR><C-w>j:term<CR><C-w>10_
 nnoremap <leader>twc <C-w>l<C-w>j<C-w>j:q<CR>
+
+inoremap <A-c>l <Plug>(copilot-accept-line)
+inoremap <A-c>w <Plug>(copilot-accept-word)
+inoremap <A-c>d <Plug>(copilot-dismiss)
+inoremap <A-c>k <Plug>(copilot-next)
+inoremap <A-c>j <Plug>(copilot-previous)
+nnoremap <leader>cop :Copilot panel<CR>
+
+"Copy to clipboard
 vnoremap <leader>y "+y
 nnoremap <leader>y "+y
 
@@ -57,6 +66,7 @@ nnoremap <C-[> :lua vim.lsp.buf.references()<CR>
 nnoremap <C-a> :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>d :lua vim.diagnostic.open_float(0, { scope = 'line' })<CR>
 
+"Move lines up and down in visual mode
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
