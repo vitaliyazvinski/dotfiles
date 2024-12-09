@@ -23,14 +23,17 @@ require("mason-lspconfig").setup({
 })
 
 
--- LSP Setup for tsserver (TypeScript/JavaScript)
 local lspconfig = require'lspconfig'
-
 lspconfig.ts_ls.setup{}
+lspconfig.ruff_lsp.setup{
+  on_attach = on_attach,
+}
 lspconfig.pyright.setup{}
 lspconfig.tflint.setup{}
 lspconfig.terraformls.setup{}
-lspconfig.eslint.setup{}
+lspconfig.eslint.setup{
+  root_dir = lspconfig.util.root_pattern(".eslintrc.js", ".eslintrc.json", ".eslintrc", ".eslintrc.yml", "eslint.config.mjs"),
+}
 
 require("conform").setup({
       formatters = {

@@ -28,6 +28,8 @@ Plug 'github/copilot.vim'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'wellle/context.vim'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 set termguicolors     " enable true colors support
@@ -46,8 +48,6 @@ nnoremap <leader>pb :Buffers<CR>
 nnoremap <C-j> :cprev<CR>
 nnoremap <C-k> :cnext<CR>
 nnoremap <C-b> :NvimTreeToggle<CR>
-nnoremap <leader>two :split<CR><C-w>j:term<CR><C-w>10_
-nnoremap <leader>twc <C-w>l<C-w>j<C-w>j:q<CR>
 
 inoremap <A-c>l <Plug>(copilot-accept-line)
 inoremap <A-c>w <Plug>(copilot-accept-word)
@@ -56,34 +56,35 @@ inoremap <A-c>k <Plug>(copilot-next)
 inoremap <A-c>j <Plug>(copilot-previous)
 nnoremap <leader>cop :Copilot panel<CR>
 
-"Copy to clipboard
 vnoremap <leader>y "+y
 nnoremap <leader>y "+y
 
 "LSP shortcuts
 "Go to references (C-] works by default to jump to definition)
 nnoremap <C-[> :lua vim.lsp.buf.references()<CR>
-nnoremap <C-a> :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>a :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>d :lua vim.diagnostic.open_float(0, { scope = 'line' })<CR>
 
-"Move lines up and down in visual mode
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 "To simulate |i_CTRL-R| in terminal-mode: >vim
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
-"To use `ALT+{h,j,k,l}` to navigate windows from any mode: >vim
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+nnoremap <A-.> :vertical resize +5<CR>
+nnoremap <A-,> :vertical resize -5<CR>
+nnoremap <A-=> :resize +2<CR>
+nnoremap <A--> :resize -2<CR>
+
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <A-h> :<C-U>TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :<C-U>TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :<C-U>TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :<C-U>TmuxNavigateRight<cr>
+nnoremap <silent> <A-\> :<C-U>TmuxNavigatePrevious<cr>
+inoremap <silent> <A-h> <C-\><C-n>:<C-U>TmuxNavigateLeft<cr>
+inoremap <silent> <A-j> <C-\><C-n>:<C-U>TmuxNavigateDown<cr>
+inoremap <silent> <A-k> <C-\><C-n>:<C-U>TmuxNavigateUp<cr>
+inoremap <silent> <A-l> <C-\><C-n>:<C-U>TmuxNavigateRight<cr>
+inoremap <silent> <A-\> <C-\><C-n>:<C-U>TmuxNavigatePrevious<cr>
 
