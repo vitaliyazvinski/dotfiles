@@ -30,6 +30,9 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'wellle/context.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'mfussenegger/nvim-dap'
+Plug 'leoluz/nvim-dap-go'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 set termguicolors     " enable true colors support
@@ -87,4 +90,14 @@ inoremap <silent> <A-j> <C-\><C-n>:<C-U>TmuxNavigateDown<cr>
 inoremap <silent> <A-k> <C-\><C-n>:<C-U>TmuxNavigateUp<cr>
 inoremap <silent> <A-l> <C-\><C-n>:<C-U>TmuxNavigateRight<cr>
 inoremap <silent> <A-\> <C-\><C-n>:<C-U>TmuxNavigatePrevious<cr>
+
+"dap shortcuts
+nnoremap <A-d>s :lua require'dap'.continue()<CR>
+nnoremap <A-d>n :lua require'dap'.step_over()<CR>
+nnoremap <A-d>i :lua require'dap'.step_into()<CR>
+nnoremap <A-d>o :lua require'dap'.step_out()<CR>
+nnoremap <A-d>b :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <A-d>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <A-d>c :lua require'dap'.run_to_cursor()<CR>
+nnoremap <A-d>r :lua require'dap'.repl.toggle()<CR>
 

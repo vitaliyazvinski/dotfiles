@@ -28,6 +28,7 @@ lspconfig.ts_ls.setup{}
 lspconfig.ruff_lsp.setup{
   on_attach = on_attach,
 }
+lspconfig.gopls.setup{}
 lspconfig.pyright.setup{}
 lspconfig.tflint.setup{}
 lspconfig.terraformls.setup{}
@@ -111,3 +112,10 @@ require("nvim-tree").setup({
   }
 })
 
+require("dap-go").setup()
+require("nvim-treesitter.configs").setup({
+  ensure_installed = { "go", "typescript", "javascript", "python", "json", "html", "css", "yaml", "bash", "lua", "dockerfile"},
+  highlight = {
+    enable = true,
+  },
+})
